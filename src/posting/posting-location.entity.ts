@@ -7,12 +7,12 @@ export class PostingLocationEntity {
     nullable: false,
     precision: 18
   })
-  lat: string;
+  lat: number;
 
   @Column({
     type: 'float',
     nullable: false,
     precision: 18
   })
-  long: string;
+  long: number;
 }
