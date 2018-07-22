@@ -20,7 +20,7 @@ export class UserController {
     @Body() body: Partial<UserEntity>
   ) {
     return from(this.commandBus.execute(
-      new CreateUserCommand(body.cellNumber)
+      new CreateUserCommand(body.cellNumber, body.name)
     )).pipe(
       map(({ error, user }) => {
         if (error) {

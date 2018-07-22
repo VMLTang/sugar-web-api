@@ -16,6 +16,13 @@ export class UserEntity extends AggregateRoot {
   cellNumber: string;
 
   @Column({
+    type: 'varchar',
+    length: '200',
+    nullable: false
+  })
+  name: string;
+
+  @Column({
     type: 'tinyint',
     default: 0,
     nullable: false
