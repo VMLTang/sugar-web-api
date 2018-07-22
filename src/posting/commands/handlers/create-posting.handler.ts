@@ -24,6 +24,7 @@ export class CreatePostingCommandHandler
       posting = this.eventPublisher.mergeObjectContext(
         this.postingRepository.create(command.partialPosting)
       );
+      console.log(posting)
       await this.postingRepository.save(posting);
     } catch (err) {
       error = err;

@@ -1,17 +1,18 @@
-import { AggregateRoot } from '@nestjs/cqrs';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 
 @Entity()
 export class PostingLocationEntity {
   @Column({
-    type: 'decimal',
-    nullable: false
+    type: 'float',
+    nullable: false,
+    precision: 18
   })
-  lat: number;
+  lat: string;
 
   @Column({
-    type: 'decimal',
-    nullable: false
+    type: 'float',
+    nullable: false,
+    precision: 18
   })
-  long: number;
+  long: string;
 }
