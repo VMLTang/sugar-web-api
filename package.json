@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "description": "Web APIs for the suage app.",
   "author": "",
+  "private": true,
+  "engines": {
+    "node": "8.11.3",
+    "npm": "6.1.0"
+  },
   "license": "MIT",
   "scripts": {
     "start": "node dist/main.js",
