@@ -15,8 +15,22 @@ export class UserController {
     private readonly commandBus: CommandBus
   ) { }
 
+  @Get('/lookup')
+  lookupUser(
+    @Query() queryParams: Partial<UserEntity>
+  ) {
+    return this.userService.findUser(queryParams);
+  }
+
+  @Get('/:id')
+  getUser(
+    @Param('id') id: string
+  ) {
+    return this.userService.getUser(id);
+  }
+
   @Post()
-  async createUser(
+  createUser(
     @Body() body: Partial<UserEntity>
   ) {
     return from(this.commandBus.execute(
@@ -30,13 +44,6 @@ export class UserController {
         return user;
       })
     );
-  }
-
-  @Get('/lookup')
-  lookupUser(
-    @Query() queryParams: Partial<UserEntity>
-  ) {
-    return this.userService.findUser(queryParams);
   }
 
   @Post('/verify/:cellNumber')

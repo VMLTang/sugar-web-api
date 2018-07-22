@@ -21,7 +21,8 @@ export class PostingEntity extends AggregateRoot {
   @Column({
     type: 'varchar',
     length: 20,
-    nullable: false
+    nullable: false,
+    default: 'PENDING'
   })
   status: PostingStatus;
 
@@ -42,7 +43,7 @@ export class PostingEntity extends AggregateRoot {
 
   @Column({
     type: 'datetime',
-    nullable: false
+    nullable: true
   })
   closedAt: Date;
 
@@ -56,12 +57,14 @@ export class PostingEntity extends AggregateRoot {
   updatedAt: Date;
 
   @ManyToOne(() => UserEntity, {
-    nullable: false
+    nullable: false,
+    eager: true
   })
   createdBy: UserEntity;
 
   @ManyToOne(() => UserEntity, {
-    nullable: true
+    nullable: true,
+    eager: true
   })
   grantedBy: UserEntity;
 }

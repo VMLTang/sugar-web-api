@@ -2,7 +2,7 @@ import { AggregateRoot } from '@nestjs/cqrs';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class PostingContentEntity extends AggregateRoot {
+export class PostingContentEntity {
   @Column({
     type: 'text',
     nullable: false

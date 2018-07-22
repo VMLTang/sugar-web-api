@@ -7,7 +7,6 @@ import { UserEntity } from './user.entity';
 
 @Injectable()
 export class UserService {
-
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>
@@ -23,6 +22,18 @@ export class UserService {
         }
 
         return user;
+      })
+    );
+  }
+
+  getUser(id: string) {
+    return from(this.userRepository.findByIds([parseInt(id, 10)])).pipe(
+      map(users => {
+        if (!users || users.length === 0) {
+          throw(new HttpException('User not found', HttpStatus.NOT_FOUND));
+        }
+
+        return users[0];
       })
     );
   }
