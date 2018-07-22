@@ -1,23 +1,34 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { AggregateRoot } from '@nestjs/cqrs';
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { VerifyCellNumberEvent } from '../notification-api/events/impl/verify-cell-number.event';
 
 @Entity()
-export class UserEntity {
+export class UserEntity extends AggregateRoot {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
     type: 'varchar',
-    length: '20'
+    length: 20,
+    nullable: false,
+    unique: true
   })
   cellNumber: string;
 
   @Column({
-    type: 'varchar'
+    type: 'tinyint',
+    default: 0,
+    nullable: false
   })
-  emailAddress: string;
+  verified: number;
 
-  @Column({
-    type: 'text'
-  })
-  oktaId: string;
+  @CreateDateColumn()
+  created: Date;
+
+  @UpdateDateColumn()
+  updated: Date;
+
+  public verifyCellNumber() {
+    this.apply(new VerifyCellNumberEvent(this.cellNumber));
+  }
 }

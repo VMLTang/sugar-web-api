@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './user/user.entity';
 import { UserModule } from './user/user.module';
+import { NotificationApiModule } from './notification-api/notification-api.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
       },
       synchronize: true
     }),
+    NotificationApiModule,
     UserModule
   ]
 })

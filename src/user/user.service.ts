@@ -13,18 +13,6 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>
   ) {}
 
-  getUser(userId: string) {
-    return from(this.userRepository.findByIds([userId])).pipe(
-      map(users => {
-        if (!users || users.length === 0) {
-          throw(new HttpException('User not found', HttpStatus.NOT_FOUND));
-        }
-
-        return users[0];
-      })
-    );
-  }
-
   findUser(partialUser: Partial<UserEntity>) {
     return from(this.userRepository.findOne({
       where: partialUser
