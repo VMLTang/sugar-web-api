@@ -6,11 +6,12 @@ import { PostingController } from './posting.controller';
 import { postingCommandHandlers } from './commands/handlers';
 import { ModuleRef } from '@nestjs/core';
 import { PostingService } from './posting.service';
+import { UserEntity } from '../user/user.entity';
 
 @Module({
   imports: [
     CQRSModule,
-    TypeOrmModule.forFeature([PostingEntity])
+    TypeOrmModule.forFeature([PostingEntity, UserEntity])
   ],
   providers: [
     PostingService,

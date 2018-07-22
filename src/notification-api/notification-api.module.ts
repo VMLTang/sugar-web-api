@@ -32,7 +32,8 @@ export class NotificationApiModule implements OnModuleInit {
     this.eventBus.setModuleRef(this.moduleRef);
     this.eventBus.combineSagas([
       this.notificationApiSagas.verifyCellNumber.bind(this.notificationApiSagas),
-      this.notificationApiSagas.confirmPosting.bind(this.notificationApiSagas)
+      this.notificationApiSagas.confirmPosting.bind(this.notificationApiSagas),
+      this.notificationApiSagas.broadcastRequest.bind(this.notificationApiSagas)
     ]);
   }
 }

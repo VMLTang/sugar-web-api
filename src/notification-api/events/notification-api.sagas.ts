@@ -5,6 +5,8 @@ import { VerifyCellNumberEvent } from './impl/verify-cell-number.event';
 import { SendVerifyCellNumberCommand } from '../commands/impl/send-verify-cell-number.command';
 import { ConfirmPostingEvent } from './impl/confirm-posting.event';
 import { SendConfirmationCommand } from '../commands/impl/send-confirmation.command';
+import { BroadcastRequestEvent } from './impl/broadcast-request.event';
+import { SendBroadcastCommand } from '../commands/impl/send-broadcast.command';
 
 @Injectable()
 export class NotificationApiSagas {
@@ -28,6 +30,19 @@ export class NotificationApiSagas {
           event.location,
           event.time,
           event.type
+        ))
+      );
+  }
+
+  public broadcastRequest(events$: EventObservable<any>) {
+    return events$
+      .ofType(BroadcastRequestEvent)
+      .pipe(
+        map((event: BroadcastRequestEvent) => new SendBroadcastCommand(
+          event.requestId,
+          event.consumerName,
+          event.consumerCellNumber,
+          event.producers
         ))
       );
   }

@@ -34,6 +34,9 @@ export class GrantPostingCommandHandler
       posting.pickupTime = command.partialPosting.pickupTime;
       posting.status = PostingStatus.COMPLETE;
       await this.postingRepository.save(posting);
+
+      posting.grantPosting();
+      posting.commit();
     } catch (err) {
       error = err;
     } finally {

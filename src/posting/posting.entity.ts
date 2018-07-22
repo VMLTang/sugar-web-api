@@ -5,6 +5,8 @@ import { PostingStatus } from './posting-status.enum';
 import { UserEntity } from '../user/user.entity';
 import { PostingContentEntity } from './posting-content.entity';
 import { PostingLocationEntity } from './posting-location.entity';
+import { ConfirmPostingEvent } from '../notification-api/events/impl/confirm-posting.event';
+import { BroadcastRequestEvent } from '../notification-api/events/impl/broadcast-request.event';
 
 @Entity()
 export class PostingEntity extends AggregateRoot {
@@ -67,4 +69,45 @@ export class PostingEntity extends AggregateRoot {
     eager: true
   })
   grantedBy: UserEntity;
+
+  grantPosting() {
+    if (this.type === PostingType.OFFER) {
+      this.apply(
+        new ConfirmPostingEvent(
+          this.grantedBy.cellNumber,
+          this.grantedBy.name,
+          this.createdBy.cellNumber,
+          this.createdBy.name,
+          this.pickupLocation,
+          this.pickupTime,
+          this.type
+        )
+      );
+    } else {
+      this.apply(
+        new ConfirmPostingEvent(
+          this.createdBy.cellNumber,
+          this.createdBy.name,
+          this.grantedBy.cellNumber,
+          this.grantedBy.name,
+          this.pickupLocation,
+          this.pickupTime,
+          this.type
+        )
+      );
+    }
+  }
+
+  broadcastRequest(users: UserEntity[]) {
+    if (this.type === PostingType.REQUEST) {
+      this.apply(
+        new BroadcastRequestEvent(
+          this.id,
+          this.createdBy.name,
+          this.createdBy.cellNumber,
+          users
+        )
+      );
+    }
+  }
 }

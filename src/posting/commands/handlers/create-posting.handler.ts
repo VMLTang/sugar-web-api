@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePostingCommand } from '../impl/create-posting.command';
 import { PostingEntity } from '../../posting.entity';
+import { UserEntity } from '../../../user/user.entity';
 
 @CommandHandler(CreatePostingCommand)
 export class CreatePostingCommandHandler
@@ -10,6 +11,8 @@ export class CreatePostingCommandHandler
   constructor(
     @InjectRepository(PostingEntity)
     private readonly postingRepository: Repository<PostingEntity>,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
     private readonly eventPublisher: EventPublisher
   ) { }
 
@@ -24,8 +27,11 @@ export class CreatePostingCommandHandler
       posting = this.eventPublisher.mergeObjectContext(
         this.postingRepository.create(command.partialPosting)
       );
-      console.log(posting)
       await this.postingRepository.save(posting);
+
+      const users = await this.userRepository.find();
+      posting.broadcastRequest(users);
+      posting.commit();
     } catch (err) {
       error = err;
     } finally {
