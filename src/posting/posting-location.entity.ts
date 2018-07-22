@@ -15,4 +15,10 @@ export class PostingLocationEntity {
     precision: 18
   })
   long: number;
+
+  @Column({
+    type: 'text',
+    nullable: false
+  })
+  description: string;
 }
