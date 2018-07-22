@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Query, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { Observable, from, of } from 'rxjs';
+import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
@@ -20,7 +20,7 @@ export class UserController {
     @Body() body: Partial<UserEntity>
   ) {
     return from(this.commandBus.execute(
-      new CreateUserCommand(body.cellNumber, body.name)
+      new CreateUserCommand(body)
     )).pipe(
       map(({ error, user }) => {
         if (error) {
@@ -44,7 +44,7 @@ export class UserController {
     @Param('cellNumber') cellNumber: string
   ) {
     return from(this.commandBus.execute(
-      new VerifyCellNumberCommand(cellNumber)
+      new VerifyCellNumberCommand({ cellNumber })
     )).pipe(
       map(({ error, user }) => {
         if (error) {
@@ -64,7 +64,7 @@ export class UserController {
     @Param('cellNumber') cellNumber: string
   ) {
     return from(this.commandBus.execute(
-      new VerifyCellNumberCommand(cellNumber)
+      new VerifyCellNumberCommand({ cellNumber })
     )).pipe(
       map(({ error, user }) => {
         if (error) {

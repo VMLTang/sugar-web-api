@@ -1,6 +1,7 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { VerifyCellNumberEvent } from '../notification-api/events/impl/verify-cell-number.event';
+import { PostingEntity } from '../posting/posting.entity';
 
 @Entity()
 export class UserEntity extends AggregateRoot {
@@ -30,10 +31,10 @@ export class UserEntity extends AggregateRoot {
   verified: number;
 
   @CreateDateColumn()
-  created: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated: Date;
+  updatedAt: Date;
 
   public verifyCellNumber() {
     this.apply(new VerifyCellNumberEvent(this.cellNumber));

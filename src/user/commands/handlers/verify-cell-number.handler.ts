@@ -21,7 +21,7 @@ export class VerifyCellNumberCommandHandler
 
     try {
       const user = await this.userRepository.findOne({
-        where: command
+        where: command.partialUser
       });
 
       if (!user) {

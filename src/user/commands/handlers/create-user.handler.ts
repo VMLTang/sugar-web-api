@@ -22,12 +22,12 @@ export class CreateUserCommandHandler
 
     try {
       user = await this.userRepository.findOne({
-        where: command
+        where: command.partialUser
       });
 
       if (!user) {
         user = this.eventPublisher.mergeObjectContext(
-          this.userRepository.create(command)
+          this.userRepository.create(command.partialUser)
         );
         await this.userRepository.save(user);
 

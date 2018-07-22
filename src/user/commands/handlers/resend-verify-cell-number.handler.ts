@@ -22,7 +22,7 @@ export class ResendVerifyCellNumberCommandHandler
 
     try {
       let user = await this.userRepository.findOne({
-        where: command
+        where: command.partialUser
       });
 
       if (!user) {
