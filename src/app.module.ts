@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './user/user.entity';
 import { UserModule } from './user/user.module';
 import { NotificationApiModule } from './notification-api/notification-api.module';
+import { UserEntity } from './user/user.entity';
+import { PostingEntity } from './posting/posting.entity';
+import { PostingModule } from './posting/posting.module';
 
 @Module({
   imports: [
@@ -14,7 +16,8 @@ import { NotificationApiModule } from './notification-api/notification-api.modul
       password: 'OP()op90',
       database: 'vmltang-sugar',
       entities: [
-        UserEntity
+        UserEntity,
+        PostingEntity
       ],
       options: {
         encrypt: true
@@ -22,7 +25,8 @@ import { NotificationApiModule } from './notification-api/notification-api.modul
       synchronize: true
     }),
     NotificationApiModule,
-    UserModule
+    UserModule,
+    PostingModule
   ]
 })
 export class AppModule {}
