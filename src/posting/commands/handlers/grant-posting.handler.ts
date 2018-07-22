@@ -36,7 +36,9 @@ export class GrantPostingCommandHandler
       await this.postingRepository.save(posting);
 
       const postingEntity = this.eventPublisher.mergeObjectContext(
-        (await this.postingRepository.findByIds([posting.id]))[0]
+        (await this.postingRepository.findByIds([posting.id], {
+          loadEagerRelations: true
+        }))[0]
       );
       postingEntity.grantPosting();
       postingEntity.commit();
