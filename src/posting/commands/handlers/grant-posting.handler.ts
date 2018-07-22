@@ -29,14 +29,17 @@ export class GrantPostingCommandHandler
         throw new HttpException('Posting not found', HttpStatus.NOT_FOUND);
       }
 
-      posting = this.eventPublisher.mergeObjectContext(postings[0]);
+      posting = postings[0];
       posting.grantedBy = command.partialPosting.grantedBy;
       posting.pickupTime = command.partialPosting.pickupTime;
       posting.status = PostingStatus.COMPLETE;
       await this.postingRepository.save(posting);
 
-      posting.grantPosting();
-      posting.commit();
+      const postingEntity = this.eventPublisher.mergeObjectContext(
+        (await this.postingRepository.findByIds([posting.id]))[0]
+      );
+      postingEntity.grantPosting();
+      postingEntity.commit();
     } catch (err) {
       error = err;
     } finally {

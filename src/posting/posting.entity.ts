@@ -99,15 +99,13 @@ export class PostingEntity extends AggregateRoot {
   }
 
   broadcastRequest(users: UserEntity[]) {
-    if (this.type === PostingType.REQUEST) {
-      this.apply(
-        new BroadcastRequestEvent(
-          this.id,
-          this.createdBy.name,
-          this.createdBy.cellNumber,
-          users
-        )
-      );
-    }
+    this.apply(
+      new BroadcastRequestEvent(
+        this.id,
+        this.createdBy.name,
+        this.createdBy.cellNumber,
+        users
+      )
+    );
   }
 }

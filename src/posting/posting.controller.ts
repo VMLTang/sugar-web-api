@@ -23,6 +23,32 @@ export class PostingController {
     return this.postingService.findPosting(queryParams);
   }
 
+  @Post(':id/grant')
+  grantRequest(
+    @Param('id') id: string,
+    @Body() body: Partial<PostingEntity>
+  ) {
+    return from(this.commandBus.execute(
+      new GrantPostingCommand({
+        id: parseInt(id, 10),
+        ...body
+      })
+    )).pipe(
+      map(({ error, posting }) => {
+        if (error) {
+          if (error.status) {
+            console.log(error)
+            throw error;
+          }
+
+          throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+        }
+
+        return posting;
+      })
+    );
+  }
+
   @Get(':id')
   getPosting(
     @Param('id') id: string
@@ -39,31 +65,6 @@ export class PostingController {
     )).pipe(
       map(({ error, posting }) => {
         if (error) {
-          throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-        }
-
-        return posting;
-      })
-    );
-  }
-
-  @Post(':id/grant')
-  grantRequest(
-    @Param('id') id: string,
-    @Body() body: Partial<PostingEntity>
-  ) {
-    return from(this.commandBus.execute(
-      new GrantPostingCommand({
-        id: parseInt(id, 10),
-        ...body
-      })
-    )).pipe(
-      map(({ error, posting }) => {
-        if (error) {
-          if (error.status) {
-            throw error;
-          }
-
           throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }
 

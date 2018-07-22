@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CreatePostingCommand } from '../impl/create-posting.command';
 import { PostingEntity } from '../../posting.entity';
 import { UserEntity } from '../../../user/user.entity';
+import { PostingType } from '../../posting-type.enum';
 
 @CommandHandler(CreatePostingCommand)
 export class CreatePostingCommandHandler
@@ -29,9 +30,16 @@ export class CreatePostingCommandHandler
       );
       await this.postingRepository.save(posting);
 
-      const users = await this.userRepository.find();
-      posting.broadcastRequest(users);
-      posting.commit();
+      if (command.partialPosting.type === PostingType.REQUEST) {
+        const users = await this.userRepository.find();
+        const postingEntity = this.eventPublisher.mergeObjectContext(
+          (await this.postingRepository.findByIds([posting.id], {
+            loadEagerRelations: true
+          }))[0]
+        );
+        postingEntity.broadcastRequest(users);
+        postingEntity.commit();
+      }
     } catch (err) {
       error = err;
     } finally {
