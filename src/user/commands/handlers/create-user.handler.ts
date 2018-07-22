@@ -22,7 +22,9 @@ export class CreateUserCommandHandler
 
     try {
       user = await this.userRepository.findOne({
-        where: command.partialUser
+        where: {
+          cellNumber: command.partialUser.cellNumber
+        }
       });
 
       if (!user) {
