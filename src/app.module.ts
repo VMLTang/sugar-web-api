@@ -5,12 +5,13 @@ import { NotificationApiModule } from 'notification-api/notification-api.module'
 import { UserEntity } from 'user/user.entity';
 import { PostingEntity } from 'posting/posting.entity';
 import { PostingModule } from 'posting/posting.module';
+import { environment } from 'shared/config/environment';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mssql',
-      url: process.env.MSSQL_URL,
+      url: environment.mssql_url,
       entities: [
         UserEntity,
         PostingEntity
