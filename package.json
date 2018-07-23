@@ -10,7 +10,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "node dist/main.js",
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "prestart:dev": "node ./scripts/wait-for",
     "start:dev": "nodemon",
     "prebuild": "rimraf dist",
     "build": "tsc"

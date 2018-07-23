@@ -1,0 +1,6 @@
+apps:
+  - script: 'dist/main.js'
+    name: 'vmltang-sugar-api'
+    instances: 'max'
+    env:
+    PORT: 8080

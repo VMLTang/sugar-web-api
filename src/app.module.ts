@@ -10,19 +10,14 @@ import { PostingModule } from './posting/posting.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mssql',
-      host: 'vmltang-sugar-db.database.windows.net',
-      port: 1433,
-      username: 'rootadmin',
-      password: 'OP()op90',
-      database: 'vmltang-sugar',
+      url: process.env.MSSQL_URL,
       entities: [
         UserEntity,
         PostingEntity
       ],
       options: {
         encrypt: true
-      },
-      synchronize: true
+      }
     }),
     NotificationApiModule,
     UserModule,

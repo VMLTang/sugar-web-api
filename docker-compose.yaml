@@ -1,0 +1,39 @@
+version: '3'
+
+volumes:
+  mssql_data: {}
+
+services:
+  mssql:
+    image: mcmoe/mssqldocker
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Developer
+      - SA_PASSWORD=P@ssw0rd!!
+      - MSSQL_DB=vmltang_sugar
+      - MSSQL_USER=vmltang_sugar
+      - MSSQL_PASSWORD=P@ssw0rd!!
+    volumes:
+      - mssql_data:/var/lib/postgresql/data
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+    depends_on:
+      - mssql
+    links:
+      - mssql
+    environment:
+      MSSQL_URL: mssql://vmltang_sugar:P@ssw0rd!!@mssql:1433/vmltang_sugar
+      PORT: 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+      - /home/node/app/node_modules
+    command: >
+      npm run start:dev
