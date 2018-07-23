@@ -2,11 +2,11 @@ import { Controller, Get, Param, Query, Post, Body, HttpException, HttpStatus } 
 import { CommandBus } from '@nestjs/cqrs';
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PostingEntity } from './posting.entity';
-import { CreatePostingCommand } from './commands/impl/create-posting.command';
-import { PostingLocationEntity } from './posting-location.entity';
-import { PostingService } from './posting.service';
-import { GrantPostingCommand } from './commands/impl/grant-posting.command';
+import { PostingEntity } from 'posting/posting.entity';
+import { CreatePostingCommand } from 'posting/commands/impl/create-posting.command';
+import { PostingLocationEntity } from 'posting/posting-location.entity';
+import { PostingService } from 'posting/posting.service';
+import { GrantPostingCommand } from 'posting/commands/impl/grant-posting.command';
 
 @Controller('/postings')
 export class PostingController {
@@ -37,7 +37,6 @@ export class PostingController {
       map(({ error, posting }) => {
         if (error) {
           if (error.status) {
-            console.log(error)
             throw error;
           }
 

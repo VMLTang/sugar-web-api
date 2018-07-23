@@ -1,6 +1,6 @@
 import { HttpService, Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { SendConfirmationCommand } from '../impl/send-confirmation.command';
+import { SendConfirmationCommand } from 'notification-api/commands/impl/send-confirmation.command';
 
 @CommandHandler(SendConfirmationCommand)
 export class SendConfirmationCommandHandler

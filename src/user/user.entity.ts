@@ -1,7 +1,6 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm';
-import { VerifyCellNumberEvent } from '../notification-api/events/impl/verify-cell-number.event';
-import { PostingEntity } from '../posting/posting.entity';
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { VerifyCellNumberEvent } from 'notification-api/events/impl/verify-cell-number.event';
 
 @Entity()
 export class UserEntity extends AggregateRoot {

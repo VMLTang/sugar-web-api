@@ -1,6 +1,6 @@
 import { ICommand } from '@nestjs/cqrs';
-import { PostingType } from '../../../posting/posting-type.enum';
-import { PostingLocationEntity } from '../../../posting/posting-location.entity';
+import { PostingType } from 'posting/posting-type.enum';
+import { PostingLocationEntity } from 'posting/posting-location.entity';
 
 export class SendConfirmationCommand implements ICommand {
   constructor(

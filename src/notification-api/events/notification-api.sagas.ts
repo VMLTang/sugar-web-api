@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { EventObservable } from '@nestjs/cqrs';
 import { map } from 'rxjs/operators';
-import { VerifyCellNumberEvent } from './impl/verify-cell-number.event';
-import { SendVerifyCellNumberCommand } from '../commands/impl/send-verify-cell-number.command';
-import { ConfirmPostingEvent } from './impl/confirm-posting.event';
-import { SendConfirmationCommand } from '../commands/impl/send-confirmation.command';
-import { BroadcastRequestEvent } from './impl/broadcast-request.event';
-import { SendBroadcastCommand } from '../commands/impl/send-broadcast.command';
+import { SendVerifyCellNumberCommand } from 'notification-api/commands/impl/send-verify-cell-number.command';
+import { SendConfirmationCommand } from 'notification-api/commands/impl/send-confirmation.command';
+import { SendBroadcastCommand } from 'notification-api/commands/impl/send-broadcast.command';
+import { BroadcastRequestEvent } from 'notification-api/events/impl/broadcast-request.event';
+import { VerifyCellNumberEvent } from 'notification-api/events/impl/verify-cell-number.event';
+import { ConfirmPostingEvent } from 'notification-api/events/impl/confirm-posting.event';
 
 @Injectable()
 export class NotificationApiSagas {

@@ -1,8 +1,8 @@
 import { CommandHandler, ICommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateUserCommand } from '../impl/create-user.command';
-import { UserEntity } from '../../user.entity';
+import { UserEntity } from 'user/user.entity';
+import { CreateUserCommand } from 'user/commands/impl/create-user.command';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler

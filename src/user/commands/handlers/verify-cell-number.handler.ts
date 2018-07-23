@@ -2,8 +2,8 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { CommandHandler, ICommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserEntity } from '../../user.entity';
-import { VerifyCellNumberCommand } from '../impl/verify-cell-number.command';
+import { UserEntity } from 'user/user.entity';
+import { VerifyCellNumberCommand } from 'user/commands/impl/verify-cell-number.command';
 
 @CommandHandler(VerifyCellNumberCommand)
 export class VerifyCellNumberCommandHandler

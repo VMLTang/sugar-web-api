@@ -1,8 +1,8 @@
 import { OnModuleInit, Module, HttpModule } from '@nestjs/common';
-import { CQRSModule, EventBus, CommandBus } from '@nestjs/cqrs';
-import { notificationApiCommandHandlers } from './commands/handlers';
 import { ModuleRef } from '@nestjs/core';
-import { NotificationApiSagas } from './events/notification-api.sagas';
+import { CQRSModule, EventBus, CommandBus } from '@nestjs/cqrs';
+import { notificationApiCommandHandlers } from 'notification-api/commands/handlers';
+import { NotificationApiSagas } from 'notification-api/events/notification-api.sagas';
 
 @Module({
   imports: [

@@ -1,5 +1,5 @@
 import { ICommand } from '@nestjs/cqrs';
-import { UserEntity } from '../../../user/user.entity';
+import { UserEntity } from 'user/user.entity';
 
 export class SendBroadcastCommand implements ICommand {
   constructor(

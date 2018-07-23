@@ -1,10 +1,10 @@
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { CommandHandler, ICommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { GrantPostingCommand } from '../impl/grant-posting.command';
-import { PostingEntity } from '../../posting.entity';
-import { HttpException, HttpStatus } from '@nestjs/common';
-import { PostingStatus } from '../../posting-status.enum';
+import { PostingEntity } from 'posting/posting.entity';
+import { PostingStatus } from 'posting/posting-status.enum';
+import { GrantPostingCommand } from 'posting/commands/impl/grant-posting.command';
 
 @CommandHandler(GrantPostingCommand)
 export class GrantPostingCommandHandler

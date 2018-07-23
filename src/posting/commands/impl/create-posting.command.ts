@@ -1,5 +1,5 @@
 import { ICommand } from '@nestjs/cqrs';
-import { PostingEntity } from '../../posting.entity';
+import { PostingEntity } from 'posting/posting.entity';
 
 export class CreatePostingCommand implements ICommand {
   constructor(

@@ -1,5 +1,5 @@
-import { CreatePostingCommandHandler } from './create-posting.handler';
-import { GrantPostingCommandHandler } from './grant-posting.handler';
+import { CreatePostingCommandHandler } from 'posting/commands/handlers/create-posting.handler';
+import { GrantPostingCommandHandler } from 'posting/commands/handlers/grant-posting.handler';
 
 export const postingCommandHandlers = [
   CreatePostingCommandHandler,

@@ -2,10 +2,10 @@ import { Controller, Get, Param, Query, Post, Body, HttpException, HttpStatus } 
 import { CommandBus } from '@nestjs/cqrs';
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserEntity } from './user.entity';
-import { UserService } from './user.service';
-import { CreateUserCommand } from './commands/impl/create-user.command';
-import { VerifyCellNumberCommand } from './commands/impl/verify-cell-number.command';
+import { UserEntity } from 'user/user.entity';
+import { UserService } from 'user/user.service';
+import { CreateUserCommand } from 'user/commands/impl/create-user.command';
+import { VerifyCellNumberCommand } from 'user/commands/impl/verify-cell-number.command';
 
 @Controller('/users')
 export class UserController {

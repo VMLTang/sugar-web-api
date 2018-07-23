@@ -1,12 +1,12 @@
 import { Module, OnModuleInit } from '@nestjs/common';
+import { ModuleRef } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CQRSModule, CommandBus } from '@nestjs/cqrs';
-import { PostingEntity } from './posting.entity';
-import { PostingController } from './posting.controller';
-import { postingCommandHandlers } from './commands/handlers';
-import { ModuleRef } from '@nestjs/core';
-import { PostingService } from './posting.service';
-import { UserEntity } from '../user/user.entity';
+import { PostingEntity } from 'posting/posting.entity';
+import { PostingController } from 'posting/posting.controller';
+import { postingCommandHandlers } from 'posting/commands/handlers';
+import { PostingService } from 'posting/posting.service';
+import { UserEntity } from 'user/user.entity';
 
 @Module({
   imports: [

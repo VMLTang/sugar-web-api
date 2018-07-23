@@ -1,6 +1,6 @@
 import { HttpService, Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { SendBroadcastCommand } from '../impl/send-broadcast.command';
+import { SendBroadcastCommand } from 'notification-api/commands/impl/send-broadcast.command';
 
 @CommandHandler(SendBroadcastCommand)
 export class SendBroadcastHandler

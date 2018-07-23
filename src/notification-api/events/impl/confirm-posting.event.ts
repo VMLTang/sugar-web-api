@@ -1,6 +1,6 @@
 import { IEvent } from '@nestjs/cqrs';
-import { PostingLocationEntity } from '../../../posting/posting-location.entity';
-import { PostingType } from '../../../posting/posting-type.enum';
+import { PostingLocationEntity } from 'posting/posting-location.entity';
+import { PostingType } from 'posting/posting-type.enum';
 
 export class ConfirmPostingEvent implements IEvent {
   constructor(

@@ -1,10 +1,10 @@
 import { CommandHandler, ICommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreatePostingCommand } from '../impl/create-posting.command';
-import { PostingEntity } from '../../posting.entity';
-import { UserEntity } from '../../../user/user.entity';
-import { PostingType } from '../../posting-type.enum';
+import { UserEntity } from 'user/user.entity';
+import { PostingEntity } from 'posting/posting.entity';
+import { PostingType } from 'posting/posting-type.enum';
+import { CreatePostingCommand } from 'posting/commands/impl/create-posting.command';
 
 @CommandHandler(CreatePostingCommand)
 export class CreatePostingCommandHandler

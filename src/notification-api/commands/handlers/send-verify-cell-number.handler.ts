@@ -1,6 +1,6 @@
 import { HttpService, Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { SendVerifyCellNumberCommand } from '../impl/send-verify-cell-number.command';
+import { SendVerifyCellNumberCommand } from 'notification-api/commands/impl/send-verify-cell-number.command';
 
 @CommandHandler(SendVerifyCellNumberCommand)
 export class SendVerifyCellNumberCommandHandler

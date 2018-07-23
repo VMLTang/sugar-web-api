@@ -1,12 +1,12 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, ManyToOne } from 'typeorm';
-import { PostingType } from './posting-type.enum';
-import { PostingStatus } from './posting-status.enum';
-import { UserEntity } from '../user/user.entity';
-import { PostingContentEntity } from './posting-content.entity';
-import { PostingLocationEntity } from './posting-location.entity';
-import { ConfirmPostingEvent } from '../notification-api/events/impl/confirm-posting.event';
-import { BroadcastRequestEvent } from '../notification-api/events/impl/broadcast-request.event';
+import { UserEntity } from 'user/user.entity';
+import { ConfirmPostingEvent } from 'notification-api/events/impl/confirm-posting.event';
+import { BroadcastRequestEvent } from 'notification-api/events/impl/broadcast-request.event';
+import { PostingType } from 'posting/posting-type.enum';
+import { PostingStatus } from 'posting/posting-status.enum';
+import { PostingContentEntity } from 'posting/posting-content.entity';
+import { PostingLocationEntity } from 'posting/posting-location.entity';
 
 @Entity()
 export class PostingEntity extends AggregateRoot {

@@ -2,9 +2,9 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { from } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { PostingEntity } from './posting.entity';
-import { PostingLocationEntity } from './posting-location.entity';
+import { map } from 'rxjs/operators';
+import { PostingEntity } from 'posting/posting.entity';
+import { PostingLocationEntity } from 'posting/posting-location.entity';
 
 @Injectable()
 export class PostingService {
