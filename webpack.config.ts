@@ -46,6 +46,7 @@ let config: Webpack.Configuration = {
     poll: 500
   },
   plugins: [
+    new CheckerPlugin(),
     new HardSourceWebpackPlugin({
       cacheDirectory: join(__dirname, 'node_modules', '.cache', 'hard-source', '[confighash]')
     })
@@ -57,9 +58,9 @@ if (env.NODE_ENV === 'development') {
     config,
     {
       plugins: [
-        new Webpack.HotModuleReplacementPlugin(),
         new StartServerPlugin({
-          name: 'server.js'
+          name: 'server.js',
+          signal: true
         })
       ]
     }
