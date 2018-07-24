@@ -2,5 +2,6 @@ apps:
   - script: 'dist/server.js'
     name: 'vmltang-sugar-api'
     instances: 'max'
+    exec_mode: cluster
     env:
-    PORT: 8080
+      PORT: 3000
