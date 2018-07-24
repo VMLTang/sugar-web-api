@@ -57,7 +57,7 @@ export class CreatePostingsTokenTable2018072300001 implements MigrationInterface
           {
             name: 'closedAt',
             type: 'datetime',
-            isNullable: false
+            isNullable: true
           },
           {
             name: 'contentMessage',
@@ -77,12 +77,14 @@ export class CreatePostingsTokenTable2018072300001 implements MigrationInterface
           {
             name: 'createdAt',
             type: 'datetime2',
-            isNullable: false
+            isNullable: false,
+            default: 'getdate()'
           },
           {
             name: 'updatedAt',
             type: 'datetime2',
-            isNullable: false
+            isNullable: false,
+            default: 'getdate()'
           },
           {
             name: 'createdById',

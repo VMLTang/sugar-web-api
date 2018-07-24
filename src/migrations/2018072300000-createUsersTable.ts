@@ -37,12 +37,14 @@ export class CreateUsersTokenTable2018072300000 implements MigrationInterface {
           {
             name: 'createdAt',
             type: 'datetime2',
-            isNullable: false
+            isNullable: false,
+            default: 'getdate()'
           },
           {
             name: 'updatedAt',
             type: 'datetime2',
-            isNullable: false
+            isNullable: false,
+            default: 'getdate()'
           }
         ]
       })
