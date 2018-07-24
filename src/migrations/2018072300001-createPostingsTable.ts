@@ -22,19 +22,25 @@ export class CreatePostingsTokenTable2018072300001 implements MigrationInterface
             isNullable: false
           },
           {
-            name: 'postingLocationLatitude',
+            name: 'status',
+            type: 'varchar',
+            length: '20',
+            isNullable: false
+          },
+          {
+            name: 'pickupLocationLatitude',
             type: 'float',
             precision: 18,
             isNullable: false
           },
           {
-            name: 'postingLocationLongitude',
+            name: 'pickupLocationLongitude',
             type: 'float',
             precision: 18,
             isNullable: false
           },
           {
-            name: 'postingLocationDescription',
+            name: 'pickupLocationDescription',
             type: 'text',
             isNullable: false
           },
