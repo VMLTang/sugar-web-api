@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack --config webpack.config.ts --mode none --progress --colors --watch --hot",
+    "start": "cross-env NODE_ENV=development webpack --config webpack.config.ts --mode none --progress --colors --watch",
     "prebuild": "rimraf dist",
     "build": "webpack --config webpack.config.ts --mode none --progress --colors",
     "predeploy": "docker build --rm -f Dockerfile -t vmltang.azurecr.io/vmltang-sugar-api:latest .",

@@ -1,3 +1,4 @@
+/* tslint:disable:no-var-requires */
 import { join } from 'path';
 import { env } from 'process';
 import * as Webpack from 'webpack';
@@ -58,21 +59,11 @@ if (env.NODE_ENV === 'development') {
       plugins: [
         new Webpack.HotModuleReplacementPlugin(),
         new StartServerPlugin({
-          name: 'server.js',
-          signal: true
+          name: 'server.js'
         })
       ]
     }
   );
-  config.entry = {
-    server: [
-      'webpack/hot/poll?100',
-      './src/main.hmr.ts'
-    ]
-  };
-  config.externals = [nodeExternals({
-    whitelist: ['webpack/hot/poll?100'],
-  })];
 }
 
 export default config;

@@ -7,14 +7,14 @@ export class PostingLocationEntity {
     nullable: false,
     precision: 18
   })
-  lat: number;
+  latitude: number;
 
   @Column({
     type: 'float',
     nullable: false,
     precision: 18
   })
-  long: number;
+  longitude: number;
 
   @Column({
     type: 'text',

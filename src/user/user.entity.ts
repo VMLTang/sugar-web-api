@@ -2,7 +2,7 @@ import { AggregateRoot } from '@nestjs/cqrs';
 import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { VerifyCellNumberEvent } from 'notification-api/events/impl/verify-cell-number.event';
 
-@Entity()
+@Entity({ name: 'users' })
 export class UserEntity extends AggregateRoot {
   @PrimaryGeneratedColumn()
   id: number;

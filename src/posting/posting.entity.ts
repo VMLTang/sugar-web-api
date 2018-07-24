@@ -8,7 +8,7 @@ import { PostingStatus } from 'posting/posting-status.enum';
 import { PostingContentEntity } from 'posting/posting-content.entity';
 import { PostingLocationEntity } from 'posting/posting-location.entity';
 
-@Entity()
+@Entity({ name: 'postings' })
 export class PostingEntity extends AggregateRoot {
   @PrimaryGeneratedColumn()
   id: number;
