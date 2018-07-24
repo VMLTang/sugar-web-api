@@ -11,10 +11,10 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack --config webpack.config.ts --mode none --progress --colors --watch --hot",
-    "prestart:dev": "node ./scripts/wait-for",
-    "start:dev": "nodemon",
     "prebuild": "rimraf dist",
-    "build": "tsc",
+    "build": "webpack --config webpack.config.ts --mode none --progress --colors",
+    "predeploy": "docker build --rm -f Dockerfile -t vmltang.azurecr.io/sugar-web-api:latest .",
+    "deploy": "docker push vmltang.azurecr.io/sugar-web-api",
     "lint": "tslint -p tsconfig.json -c tslint.json"
   },
   "dependencies": {
@@ -39,11 +39,9 @@
     "awesome-typescript-loader": "^5.2.0",
     "cross-env": "^5.2.0",
     "hard-source-webpack-plugin": "^0.11.2",
-    "nodemon": "^1.18.3",
     "rimraf": "^2.6.2",
     "start-server-webpack-plugin": "^2.2.5",
     "ts-node": "^7.0.0",
-    "tsconfig-paths": "^3.4.2",
     "tslint": "5.11.0",
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",

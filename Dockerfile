@@ -17,5 +17,5 @@ COPY --chown=node:node . /home/node/app
 RUN npm ci --quiet --no-progress
 RUN npm run build
 
-EXPOSE 8080
+EXPOSE 3000 2222
 CMD [ "pm2-docker", "process.yaml" ]

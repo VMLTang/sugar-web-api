@@ -1,5 +1,5 @@
 apps:
-  - script: 'dist/main.js'
+  - script: 'dist/server.js'
     name: 'vmltang-sugar-api'
     instances: 'max'
     env:
